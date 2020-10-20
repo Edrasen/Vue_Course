@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{titulo}}</h2>
+        <h2 class="bg-dark":class="color">Su saldo es: ${{cantidad}}</h2>
+        <a :href="enlace">Ir al enlace</a>
+        
+        <hr>
+
+        <h2 v-if="estado">Cuenta Activa</h2>
+        <h2 v-else>Cuenta Inactiva</h2>
+
+        <h2 v-if="cantidad > 500">Buen saldo :D</h2> 
+        <h2 v-else-if="cantidad <= 500 && cantidad > 0">
+            Cantidad:
+            <span style="color:red">${{cantidad}}</span>
+        </h2>
+
+        <hr>
+
+        <h2>Mis servicios disponibles: </h2>
+
+        <ul>
+            <li v-for="(item, index) in servicios" :key="index">{{index+1}} - {{item}}</li>
+        </ul>
+        
+        <hr>
+
+        <input type="number" v-model="monto">
+        <button v-on:click="agregarSaldo">Agregar saldo</button>
+        <button @click="quitarSaldo":disabled="btnQuit">Quitar Saldo</button>
+
+        <footer-banco></footer-banco>        
+
+    </div>
+<script src="main.js"></script>
+<script src="components/Footer.js"></script>
+<script>
+    const mountedApp = app.mount("#app")
+</script>
+</body>
+</html>
